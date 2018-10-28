@@ -1,0 +1,362 @@
+Software Systems Verification and Validation
+running tests
+tests coverage
+
+Quality control vs Quality assurance
+
+
+DESIGN
+Cr Check Doc Page/Line   Comment
+1  D02  4 5 6            main subalg computes the indexes poorly def.
+2  D03  3 4 5 6          does not account for corner cases
+3  D05  3 4 5 6          no exception handling
+4  D07  3 4 5 6          function naming, class desc, pre post req missing
+4  D11  3                input source not specified2
+
+
+SOURCE CODE
+Cr Check Doc Page/Line   Comment
+1  D01   27               for n-4 won't work as expected
+2  D13   all              code formatiing (no style guide)
+3  D13   5                responsability of construction
+4  D13   all              no function to read and write in the sequence
+5  D05   28-32            for n=9 actual result true, expected result false
+6  D05   all              violated invocation for solving longer seq if unproperly instatiated
+7  D13   17               some functions should be private
+8  D01   50-58            if the longest seq is a sufix of the array the method won't returnn it.
+9  D01   41-57            Once a substring is found, it won'treset the start point and the length
+10 D13   38-61            inconsistency between req and implementation
+11 D04   27               arraylist type is not specified
+
+
+
+Domanin testing 
+BBT -> TC_EC (equiv classes)     ~ TC_EC_BVA
+    -> TC_BVA
+
+#EC condition   valid   EC  invalid EC
+
+#TC_EC  #EC input   expected    actual
+
+#BVA    #EC input
+
+#TC_BVA #BVA input OE OA
+
+#TC_EC_BVA  TC_EC == TC_BVA     In      Ob E A 
+
+
+Specification
+input: X=(x1,x1,...xn)
+pre: sigm(x)
+output Z=(z1,z2,...zn)
+post gamma(X,Z)
+
+Exercise:
+input: n
+pre: n apartine N
+output: b
+post: b apartine {T,F}, T is prime, F not prime
+
+#EC condition   valid EC    invalid EC
+1                n apartine N
+2                            n<0
+3                            n>maxint
+6               n is even
+7               n is odd
+12 cornercase   n=1,2,0
+
+#TC_EC  #EC     input   expected    actual
+1       2       -1      errMsg
+2       3       2       errMsg
+3       9,1     2       true 
+4       10,7    3       true
+5       12,5,8  1       false
+6       11      5       true
+7       14,6    0       false
+
+
+#BVA    #EC input
+1           0
+2           maxint
+3           -1
+...
+8           b=T
+
+
+#TC_BVA #BVA input OE OA
+1       1    0
+2       2    maxint
+3       3    -1
+...
+
+
+#TC_EC_BVA  TC_EC == TC_BVA     In      Ob E A 
+1           1 == 3              -1
+2           2 == 6              maxint
+3           3 ...
+
+
+
+SOURCE CODE TESTING
+
+WBT -> CFG + CC -> indep paths -> coverage criteria: statement, decision, condition, paths, loop
+
+public boolean is Prime (int n) throws ValueException {
+    boolean b = true
+    if(n<0)
+        throw new ValueException("data not valid")
+    if(n<2)
+        b = false
+    else {
+        int i=2;
+        while(i<(n/2)){
+            if(n%2)
+                b = false
+            else
+                b = true
+            i++
+        }
+    }
+}
+
+1 -> 2 -T-> 3 -> 13
+       -F-> 4 -T-> 5 -> 12 -> 13
+              -F-> 6 -> 7 -T-> 8 ... -> 11 -> 7
+                          -F-> 12 -> 13
+
+CC {
+    no regions = 5
+    E-N+2 = ... 5
+    no predicates + 1 = 4 + 1
+        (D1, D2, D7, D8)
+}
+
+paths:
+1 2 3 13
+1 2 4 5 12 13
+1 2 4 6 7 12 13
+1 2 4 6 7 8 9 11 ... 13
+1 2 4 6 7 8 9 11 ... 13
+
+
+            Exp,Act             D2      D4      D7      D8      PATHS                    LOOP
+#TC input   output  statement   T   F   T   F   T   F   T   F   P1   P2   P3   P4   P5   0   1   2  m<n  n-1     n   n+1   
+1   -1      err     1,2,3       x                               x
+2   1       F       4,5             x   x                            x
+3   15      F,T     6,7..11                 x   x   x   x   x                  x    x                            x
+            ^BUG HERE !!! 
+4   2       T,T                                                           x              x
+^ created for path coverage
+5   6       F,F                                                                              x
+6   8                                                                                            x   n   n           n
+^ created for loop coverage
+
+redo test case after corection -> regression testing
+
+3 test cases for statement coverage
+5 test cases for path coverage
+
+
+public void SolveLongestSequence() throws ValueException {
+    int posI = -1, lenI = 0, i = 0;
+    int posF = -1, lenI = 0;
+    while (i<this.l.size()){
+        if isPrime((int) this.l.get(i)==true)
+            if(posI==-1){
+                posI = i;
+                lenI = 1;
+            }
+            else
+                lenI++;
+        else
+            if(lenI>lenF){
+                lenF = lenI;
+                posF = posI;
+            }
+        i++;
+    }
+    this.state = posF;
+    this.len = lenF;
+}
+
+CC {
+    no regions = 5
+    predicates: p2 p3 p4 p7
+    no pred = 5
+}
+
+paths:
+1 2 10 11
+1 2 3 7 9 2 ..
+1 2 3 7 8 9 2 ..
+1 2 3 4 6 9 2 ..
+1 2 3 4 5 9 2 ..
+
+decision coverage = condition coverage in this cas
+
+                Exp,Act             D2      D3      D4      D7      PATHS                    LOOP
+#TC input       output  statement   T   F   T   F   T   F   T   F   P1   P2   P3   P4   P5   0   1   2  m<n  n-1     n   n+1   
+1   7 [4,2,2,4] 1,2     x           x   x   x   x   x   x   x   x        x    x    x    x 
+2   0 []                                                            x
+
+
+
+
+##### SEM 4
+levels of testing ~ unit, models, integrations (big bang, incremental top down / bottom up, sandwitch, stew/driers/ errors)
+
+M - C - N
+      - B - F
+  - R
+  - A - E
+
+
+BIG BANG INTEGRATION
+all modules separetely then integration overall
+
+#num  operation_type  tasted_module   drivers   stub    errors
+1-8   unit            R-E             DR, DB..  SF..    ER...
+9     integration     M-F             -         -       EM..F, M U SC(N,B)
+
+
+INCREMENTAL
+top_down (breath first / depth first)
+
+#num   operation_type   tasted_module   drivers     stub        errors
+1-8    unit             M C A R...                  SC SR SA    ERC, ..
+
+A needs stub for E / stub for below 
+
+bottom up:
+unit order: N F E X C R A M
+N needs DN
+B needs DB / bottom up need drivers 
+
+
+SANDWITCH
+can use clusters (for each cluster can apply different integrations)
+
+
+
+
+
+##### SEM 5
+CORRECTNESS
+correctness by construction
+
+Floyd:
+subalg search (n, x, a, p)
+    s<-1, d<-n
+    while (s<d):
+        m<-(s+d)/2
+        if(a<=x_m):
+            d<-m
+        else
+            s<-m+1
+    p<-s
+
+
+Cutting Points: enter exit while etc
+A: T: (x1<=a<xn)^(x1<=x2<=...<=xn)
+    uA ::= 1+n
+B: J: xs<=a<x
+    uB ::= d-s
+C (1<=p<=n)^(xp<=a<=xp+1)
+
+Verification Condition:
+R_alpha_AB ::= (s<d)
+R_alpha_BB_if ::= (s<d)^if
+R_alpha_BC ::= (s<d)^else
+
+Transformation Function:
+r_alpha_AB ::=(s,d)<=(1,n)
+r_alpha_BB_if ::=(m,s,d)<=(s+d/2,s,m)
+r_alpha_BB_else ::=(m,s,d)<=(s+d/2,s,m)
+
+Partial Correctness:
+CV_alpha_AB: (A^R_alpha_AB->B|r_alpha_AB) True
+CV_alpha_BB_if: (A^R_alpha_BB_if->B|r_alpha_BB_if) True
+CV_alpha_BB_else: (A^R_alpha_BB_else->B|r_alpha_BB_else) True 
+CV_alpha_BC: (A^R_alpha_BC->B|r_alpha_BB_else) True
+
+Terminal Condition:
+CT_alpha_AB: any y (A->uA>uB|r_alpha_AB)
+CT_alpha_BB_if: any y (A->uB>uB|r_alpha_BB)
+CT_alpha_BB_else
+CT_alpha_BC
+
+
+Hoare {P} S {Q}
+partial cond:
+    j=>p
+    {j} S {j}
+    [j^->G=>Q]
+j:{N>=0}
+m:=0, y:=1
+{y=2^m}
+while(m!=N):
+    y:=2*y
+    m:=m+1
+{y=2^N}
+
+j=>P
+y=2^m
+m:=0
+y:=1
+
+
+Dijkstra: weakest preconditon\
+wp(w:=E,R) == R[w:=E]
+seq: wp(S,T,R) == wp(S, wp(T,R))
+if: wp(if B then S else T end, R) == (B^wp(S,R))v(notB^wp(T,R))
+
+wp(x:=x+2, x<=10)
+    == x<=10 [x:=x+2]
+    == x+2 <= 10 true
+
+wp(x:=20, x<=10)
+    == x<=10 [x:=20]
+    == 20 <= 10 false
+
+wp(y:=y+2; x=x+4*y, y<=10 ^ x>=8)
+    == wp(y:=y+2, wp(x:=x+4*y, ...))
+    == wp(y:=y+2, y<=20 ^ x+4*y>=8))
+    == wp(y<=20 ^ x+4*y>=8)[y:=y+2]
+    == y<=18 ^ x+4*y>=0
+
+
+
+##### SEM 6
+RIMGEN
+cards - testing techniques:
+            - scenario testing
+            - quicktests
+            - risk based testing
+1 short q + 1 long q
+
+RECAP
+topics:
+ - inspection
+ - testing
+ - evozon pres
+ - symbolic exec
+ - correctness
+ - endava pres
+ - altom pres
+ - model checking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+S -> P
+P -> A int main ( ) C
+A -> # include < iostream > A
+A -> using namespace std ;
+C -> { S }
+S ->  SA | SD | SI | SO | SC | SR | SF | SL | ^
+SA -> ID = E ; S
+SD -> int ID ; S| float ID ; S
+ID -> L X
+L -> a | b |c |d |e| f| g| h| i| j| k| l| m| n| p| r| x| y| z| t
+X -> X X | L | DI | 0 | ^
+DI -> 1 | 2 |3 | 4 | 5 | 6 | 7 | 8 | 9
+SL -> while SC C S
+SC -> ( E < E )  | ( E > E ) | ( E == E ) | ( E != E )
+E -> ID EE | VI EE 
+EE -> + E | - E | * E | / E | ^
+VI -> + DI N | - DI N | 0 | DI N
+VF -> + N . N DI | - N . N DI | N . N DI
+N -> N N | DI | 0 | ^
+SF -> if ( SC ) C S
+SI -> cin >> ID ; S
+SO -> cout << E ; S
+SR -> return 0 ; S

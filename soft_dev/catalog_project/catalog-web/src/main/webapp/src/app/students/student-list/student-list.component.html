@@ -1,0 +1,26 @@
+<h2>Students</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Del</th>
+    </tr>
+    </thead>
+
+    <tbody class="students">
+        <tr *ngFor="let student of students; let i = index"
+            [class.selected]="student === selectedStudent"
+            (click)="onSelect(student)">
+            <td> {{i}} </td>
+            <td>{{student.name}}</td>
+            <td><button class="delete" (click)="delete(student); $event.stopPropagation()" class="btn btn-danger">x</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div *ngIf="selectedStudent" class="col-md-12">
+    <button (click)="gotoDetail()" class="btn btn-default">{{selectedStudent.name}}  Details</button>
+</div>

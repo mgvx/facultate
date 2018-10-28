@@ -1,0 +1,47 @@
+ABB
+
+<program>::= <header> "int main()" <comp_stmt> "return 0;"
+
+<header>::= <include> " using namespace std ;"
+<include>::= "#include<" <library> ">"
+<library>::= "iostream"
+
+<comp_stmt>::= "{" <stmt_list> "}"
+<stmt_list>::= <stmt> | <stmt><stmt_list>
+<stmt>::=  <decl> | <assign> | <input> | <output> | <cond> | <if> | <while>
+
+<digit>::= "0"|"1"|"2"|...|"9"
+<nonzero_digit>::= "1"|"2"|...|"9"
+<sign>::= "+" | "-" | ε
+<digit_list>::= <digit> | <digit> <digit_list> | ε
+<int>::= <sign> "0" | <sign> <nonzero_digit> <digit_list>
+<float>::= <int>.<digit_list>
+
+<letter>::= "a"|"b"|"c"|...
+<char>::= <letter> | <digit>
+<char_list>::= <char> | <char><char_list>
+<id>::= <letter><char_list>
+<id_list>::= <id> | <id> "," <id_list>
+
+<exp>::= <id> | <int> | <float> | <exp> <op> <exp> |
+<op>::= "+" | "-" | "*" | "%" | "/"
+
+<decl>::= <type> <id_list> ;
+<type>::= "int" | "float"
+<assign>::= <id> "=" <exp> ;
+
+<cond>::= <cond_exp> | <cond_exp> <log_op> <cond_exp>
+<cond_exp>::= <exp> <rel_op> <exp>
+<rel_op>::= "<" | ">" | "==" | "!=" | "<=" | ">="
+<log_op>::= "||" | "&&"
+
+<while>::= "while(" <cond> ")" <comp_stmt>
+<if>::= "if(" <cond> ")" <comp_stmt> | "if(" <cond> ")" <comp_stmt> "else" <comp_stmt>
+
+<input>::= "cin" <in_list> ";"
+<in_list>::= <in> | <in><in_list>
+<in>::= ">>" <id>
+
+<output>::= cout <out_list> ";"
+<out_list::= <out> | <out><out_list>
+<out>::= "<<" <id> | "<< "\n""

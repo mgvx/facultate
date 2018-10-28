@@ -1,0 +1,15 @@
+CAP theorem
+consistency
+avaibility
+partition tolerance
+
+
+lambda application 
+- batch layer ~ map_reduce
+- speed layer ~ spout -datastream-> bolt (processing unit)
+
+CR not CRUD
+data denormalization
+
+
+

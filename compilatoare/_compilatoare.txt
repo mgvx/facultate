@@ -1,0 +1,526 @@
+
+######################################################################################################################## CURS 1
+
+STICKMAN -by text editor-> source program -by compiler-> object program -libraries-> execute program -loader-> memory of compiler <-> STICKMAN
+
+compiler phases:
+os <-> compiler <-> source program & executable program ; os <-> executable -creates-> variables
+
+interpreter:
+os <-> interpreter <-> source program & variables
+
+Grammars:
+regular: automata fi
+nite
+context free: (has atributes) push down automata
+
+
+
+BNF Bachus Naur Form
+
+meta
+meta symbols
+primitives
+operators
+nonterminals <...>
+terminals
+
+::=		by definition
+|		or
+epsilon	empty sequence
+
+EX: unsigned integer
+<unsigned integer> ::= <zero> | <nonzero> <digits>
+<zero> ::= 0
+<nonzero> ::= 1|2|3...|9
+<digit> ::= <zero> | <nonzero>
+# <digits> ::= <digit> | <digit> <digits>
+<digits> ::= epsilon | <digit> <digits>
+
+
+
+EBNF Extended BNF
+
+terminals "..."
+nonterminals
+operators
+=		by definition
+|		or
+{...}	many times / repeat
+[...]	optional ~ epsilon | x
+each rule endes by .
+(...)	specify priority
+(*...*)	comments
+
+EX: unsigned integer
+unsigned integer = zero | nonzero digits .
+zero = "0" .
+nonzero = "1"|"2"|"3"...|"9" .
+digit = zero | nonzero .
+# digits = epsilon | digit | digit digits .
+digits = [digit][digits]
+
+
+
+EX: integers with sign
+BNF:
+<signed integer> ::= <zero> | <nonzero> <digits> | + <nonzero> <digits> | - <nonzero> <digits>
+EBNF:
+signed integer = zero | ["+"|"-"] nonzero digits .
+digits = {zero|nonzero} .
+
+
+
+Program:
+begin
+	a:= a+b
+	b:= c
+end
+<program> ::= <declar> <comp_stmt> .
+<declar> ::= var <one_decl>
+<one_decl> ::= <list_id> : integer ;
+<list_id> ::= ID | ID <list_id>
+<comp_stmt> ::= begins <list_stmt> end
+<list_stmt> ::= <stmt> | <stmt> ; <list_stmt>
+<stmt> ::= <assign> | <comp_stmt>
+<assign> ::= ID := <expr>
+<expr> ::= ID
+<expr> ::= <expr> + <expr>
+
+
+
+######################################################################################################################## SEMINAR 1
+
+1)
+binary:
+La = { 1a | a-{0,1}* }
+Lc = La U {w.x1 | w-La, x-{0,1}* }
+dec:
+Ld = {	xy | x-{1..9}, y-{0..9}* } U {0} # poz int num
+Le = Ld U { -xy | x-{1..9}, y-{0..9}* } # int num
+Lf = Ld U { z.xy | z-Ld, x-{0..9}*, y-{1..9} } # real poz num
+
+2)
+<sentence> -> <subject> <predicate>
+<subject> -> ursul | cerbul
+<predicate> -> doarme
+
+
+######################################################################################################################## CURS 2
+
+PIF table 2 columns -> cod of the token (nothing/adress in st)
+ST identifies constants (literals) -> columns: name & attributes / build by lexical analysis
+
+######################################################################################################################## SEMINAR 2
+
+1. a) s -> epsilon | aas
+	 b) s -> a | aas
+	 c) L = {a^n*b^2n | n>=0}
+	 		s -> epsilon | asbb
+	 e) s -> 0x1
+	 		x -> 1|1x
+	 f) s -> epsilon | as | bs
+	 g) s -> epsilon | bs | aaa | asa
+	 h) s -> epsilon | as | sb
+	 i) s -> ab | asb | sb
+	 k) s -> ab | asb | asbb
+	 l) s -> ax | xc
+	 		x -> epsilon | bx
+   m) s -> epsilon | a | b | asa | bsb
+	 n) s -> assa | bsb | w
+	 		w -> aw | bw | epsilon
+	 p) s -> xw
+	 		x -> epsilon | aa | bb | asa | bsb
+			w -> epsilon | aw | bw
+
+2. a) L = { a^n*b^n*c^m | n,m>0}
+	 d) L = { a^n*c*b^m | m,n>=0}
+
+3?. s -> epsilon | xsy
+		L included L(G)
+		L(G) included L
+
+3. f) s -> 0 | +x | -x | x
+			x -> w | w.v | 0.v
+			w -> n | wd
+			v -> n | dv
+			d -> 0|1|..|9
+			n -> 1|..|9
+
+
+######################################################################################################################## SEMINAR 3
+
+1.
+		a	b
+p		q	p	0
+q		p	p	1
+
+		0			1
+q0	q1		q2		0
+q1	q1,q2	q1		0
+q2	q2		q1,q2	1
+
+2.
+Q			set of states q0, q1
+sigma set of alphabet {0,1}
+delta	Qxsigma ->Q
+q0		initial set
+F			set of final states {q0}
+
+(q0,1010)-(q1,010)-(q3,10)-(q2,0)-(q0,), q0 apartine F -> accepted
+(q0,1100)-(q1,100)-(q0,00)-(q2,0)-(q0,), q0 apartine F -> accepted
+(q0,1011)-(q1,011)-(q3,11)-(q2,1)-(q3,), q3 not final state -> not accepted
+(q0,1000)-(q1,000)-(q3,00)-(q0,0)-(q3,), q3 not final state -> not accepted
+
+3.
+a) -> q0 -a-> q1 -a-> q2 -a-> q3/
+b) -> q0 (selfref a,b) -a-> q1 -a-> q2 -a-> q3/ (selfref a,b)
+c) -> q0 (selfref 1,0) -0-> q1 -0-> q2 (selfref 1,0)
+
+d) -> q0 -a-> q1 (selfref a,b,c) -a-> q4/
+				 -b-> q1 (selfref a,b,c) -b->
+				 -c-> q1 (selfref a,b,c) -c->
+
+f) -> q0 -c-> q1 -c-> q2 (ref q0) -c-> q3/
+
+g) -> q0/ <-a-> q1 <-b-> q3
+					<-b-> q2 <-a->
+h) g final state q3
+i) -> q0 (selfref 1) -0-> q1 (selfref 0) -1-> q2/ (selfref 0,1)
+j) -> q0 (<-0) -0-> q1 (<-1) -1-> q2 (<-0) -0-> q3/
+l) -> q1 -0-> q2 <-0,1-> q3
+								 -0-> q4/ (<-1)
+				 -1-> q3
+
+m) -> q0/ -0-> q1/ (<-0)
+					-1-> q2/ (<-1)
+
+n) -> q -a-> q -a-> q/ (<-a,b)
+
+
+######################################################################################################################## SEMINAR 4
+
+1.
+	b) S-> epsilon | aA | a
+		 A-> aA | a
+	c) S-> b | aS
+	d) S-> epsilon | A
+		 A-> b | aS
+	e) -> p1 (selfref a) -a,b-> p2/ (selfref b)
+		 S-> a | b | aAb | aB
+		 A-> epsilon | aA | a
+		 B-> bB | b
+
+2.	p1 -> 				==	one terminal
+		-> p1/ 				==	S-> epsilon
+		p1 -a-> p2/ 	==	S-> a
+		p1 -a-> p2		==	S-> aB
+
+3.
+  a) S-> aA | epsilon
+		 A-> aB
+		 B-> aC | a
+		 C-> aA
+	b) -> p1 -a-> p2 (selfref a) -b-> p3/ (selfref b)
+		 S-> a | aA
+		 A-> aA | bB | b
+		 B-> bB | B
+	c) S-> 1|0|!A
+		 A-> 0|1|1A|0A
+
+4.
+ 	a) -> p1 (selfref a) -b-> p2/
+	b) -> p1 -a-> p2 -b-> p3/
+	b) -> p1/ -a-> p2 (selfref b) -c-> p3/
+
+5.	S-> eps	==	-> p1/
+		A-> a		==	p1 -a-> p2/
+		A-> aB	==	p1 -a-> p2
+
+6.
+	a) -> p1/ <-a-> p2
+		 S-> eps | aA
+		 A-> a | aB
+		 B-> aA
+  b) -> p1/ (selfref a) -b-> p2 (selfref b)
+		 S-> eps | aA | bB | b | a
+		 A-> aA | a | bB | b
+		 B-> bB | b
+
+######################################################################################################################## LAB 5
+
+2 a) finite automata FA correct or not
+	b) no more space splitting FA id, FA const, FA for lang
+		 the longest accepted starting subseq
+
+######################################################################################################################## SEMINAR 5
+
+Pumping lemma for regular language
+let L be a reg lang
+then exista p aprtine N depending only on L (fixed for L) such that:
+	any w apartine L of length <= p
+	w can be written as w = x y z	satisfying the next conditions:
+		|y| >= 1
+		|y| <= p
+		x y^i z apartine L
+Closure Properties:
+if L1, L2 are reg lang over E, then L1\/L2, L2/\L3, L1L2, L1*, complement(L1) are reg lang overE
+
+1.	L={a^n * b^n | n apartine N}
+		any p apartine N,  exista w = a^p * b^p, |w|>=p such that w = x y z and conditions are satisfyed ...
+
+
+######################################################################################################################## SEMINAR 6
+
+1. 1) S->aSbS
+	 2) S->aS
+	 3) S->c
+	 ? acbc included in L(G)
+
+	 (q,1,epsilon,S)
+	 expansion (q,1,S1,aSbS)
+	 advance (q,2,S1a,SbS)
+	 expansion (q,2,S1aS1,aSbSbS)
+	 local_failure (b,2,S1aS1,aSbSbS)
+	 another_try (q,2,S1aS2,aSbS)
+	 local_failure (q,2,S1aS2,aSbS)
+	 another_try (q,2,S1aS3,cbS)
+	 advance (q,3,S1aS3c,bS)
+	 advance (q,4,S1aS3cb,S)
+	 expansion (q,4,S1aS3cbS1,aSbs)
+	 local_failure (b,4,S1aS3cbS1,aSbs)
+	 another_try (q,4,S1aS3cbS2,aS)
+	 local_failure (b,4,S1aS3cbS2,aS)
+	 another_try (q,4,S1aS3cbS3,c)
+	 advance (q,5,S1aS3cbS3c,epsilon)
+	 advance (t,5,S1aS3cbS3c,epsilon)
+	 SUCCESS
+
+	 ? cb included in L(G)
+	 (q,1,epsilon,S)
+	 expension (q,1,S1,aSbS)
+	 local_failure (b,1,S1,aSbS)
+	 another_try (q,1,S2,aS)
+	 local_failure (b,1,S2,aS)
+	 another_try (q,1,S3,c)
+	 advance (q,2,S3c, epsilon)
+	 local_failure (b,2,S3c, epsilon)
+	 go_back (b,1,S3,c)
+	 another_try (e,1,epsilon,S)
+	 FAIL
+
+	 1. 1) S->+SS
+	 	  2) S->-SS
+	  	3) S->a
+	 	 ? +aa included in L(G)
+
+######################################################################################################################## SEMINAR 7
+
+1. 		first1	|	follow1
+	 S	eps,( 	|	$,(,)
+
+2.		first1	|	follow1
+	 S	a,+,-		|	$,a,+,-
+
+3.		first1	|	follow1
+	 S	a				|	$,+,-,a
+
+4.		first1	|	follow1
+	 S	a,eps		|	a,$
+	 A	a,b			|	a,$
+
+2.		first1	|	follow1
+	 S	a,b			|	$
+	 A	eps,a,b	|	a,b,c
+
+LL PARSER ?
+
+1.		first1	|	follow1
+	 A	a				|	$
+	 B	b,c			| c
+	 D	c				| $
+
+		(1)	A -> BD
+		(2)	A -> a
+		(3)	B -> bB
+		(4)	B -> c
+		(5)	D -> c
+
+				a				b				c				$
+		A		(a,2)		(BD,1)	(BD,1)
+		B		error				(bB,3)	(c,4)
+		D										(c,5)
+		a		pop
+		b						pop
+		c										pop
+		$														accept
+
+2. (bcc$, A$, eps)
+	 push -> (bcc$, BD$, 1)
+	 push -> (bcc$, bBD$, 13)
+	 pop	-> (cc$, BD$, 13)
+	 push	-> (cc$, cD$, 134)
+	 pop	-> (c$, D$, 134)
+	 push	-> (c$, c$, 1345)
+	 pop	-> ($, $, 1345)
+	 accept
+	 bcc apartine L(G)
+
+	 (ab$, A$, eps)
+	 push	-> (ab$, a$, 2)
+	 pop	-> (b$, $, 2)
+	 error
+	 ab nu apartine L(G)
+
+######################################################################################################################## SEMINAR 8
+12)
+S' -> S
+S -> aAd
+S -> BAB
+A -> cA
+A -> c
+B -> d
+
+		First		Follow
+S'	a,b			$
+S		a,b			$
+A		c				d
+B		d				$
+
+I0
+[S' -> .S,$] -S-> [S'->S.,$] I1
+[S -> .aAd,$]
+[S -> .bAB,$] -a-> [S->a.AD,$] I2 -A-> [S->aA.d,$] I4 -d-> [S->aAd.,$]
+|	  							 [A->.cA,d]			-c-> [A->c.A,d]	I5 -A-> [A->cA.,d] I6
+| 								 [A->.c,d]					 [A->.cA,d] 	 <-c-> selfref
+-b-> [S->b.AB,$] I3										 [A->.c,d]
+ 		 [A->.CB,$]												 [A->c.,d]
+		  [A->.C,$] -c-> I5
+
+I2 -> [S->bA.B,$] I8 -d-> [B->d.,$] I10
+			[B->.d,$]			 -B-> [S->bAB.,$] I9
+
+shift = the arrows from what and with what, indice = to what
+reduce = last thing is point, the I and whats left, indice = number of production rule
+accept = the first prod rule
+
+($0,acd$,eps)|-s2- ($0a2,cd$,eps)|-s5- ($0a2c5,d$,eps)|-r4- ($0a2c5!4,d$,4)|-s7- ($0a2c5A4d7,$,4)|-r1- ($0S1,$,41)|- accept
+.
+
+######################################################################################################################## SEMINAR 9
+1)	S'-> S
+		S	-> aSb
+		S -> aScSb
+		S -> d
+
+I		action		S	a	b	c	d
+0		shift			1	2			3
+1		accept
+2		shift			4	2			3
+3		reduce_3
+4		shift					5	6
+5		reduce_1
+6		shift			7				3
+7		shift					8
+8		reduce_2
+
+LR(0)
+ 						($0, aadcdbb$, eps)
+|-shift-		($0a2, adcdbb$, eps)
+|-shift-		($0a2a2, dcdbb$, eps)
+|-shift-		($0a2a2d3, cdbb$, eps)
+|-reduce_3-	($0a2a2S4, cdbb$, 3)
+|-shift-		($0a2a2S4c6, dbb$, 3)
+|-shift-		($0a2a2S4c6d3, bb$, 3)
+|-reduce_3-	($0a2a2S4c6S7, bb$, 33)
+|-shift-		($0a2a2S4c6S7b8, b$, 33)
+|-reduce_2-	($0a2S4, b$, 233)
+|-shift-		($0a2S4b5, $, 233)
+|-reduce_1-	($0S1, $, 1233)
+|-accept => aadcdbb is accepted
+
+
+######################################################################################################################## SEMINAR 13
+1. L = {a^n *b^n *c^n | n apartine N}
+	 S -> ABC
+	 A -> aA | eps (A1 -> aA2)
+	 B -> bB | eps
+	 c -> cC | eps
+	 inherits atributes A.len <- S.len/3, B.len <- S.len/3, C.len <- S.len/3.
+	 										A2.len <- A1.len-1 analog B C
+
+	 S.l = 9
+	 S -> A l=3 -> a
+	 						-> A l=2 -> a
+											 -> A l=1 -> a
+											 					-> A l=0 -> epsilon
+	 	 -> B l=3 analog
+		 -> C l=3 analog
+
+5. N -> B N			N2 , N1.v <- B.v*2^N2.l + N2.v , N1.l <- N2.l + B.l
+ 	 N -> B	 			N.v <- B.v	, N.v <- B.l
+	 N -> 0				B.v <- 0 , B.l <- 1
+	 N -> 1				B.v <- 1 , B.l <- 1
+
+3. S0 -> S1 + S2		S0.p <- S1.p S2.p +
+	 S -> d						S.p <- d
+	 S0 -> S1 * S2		S0.p <- S1.p S2.p *
+
+2. S0 -> S1 S2 +		S0.v <- S1.v + S2.v
+	 S0 -> S1 S2 *		S0.b <- S1.v * S2.v
+	 S -> d						S.v <- d
+
+intermediary code TAC quadruples
+1)
+	A:= B+ C*D*E -5
+	B:= B+ C*D
+	D:= B+ C*D
+
+	op	arg1	arg2	result
+	*		C			D			T1
+	*		T1		E			T2
+	+		B			T2		T3
+	-		T3		5			T4
+	:=	T4					A
+	+		B			T1		T5
+	:= 	T5					B
+	+		B			T1		T6
+	:=	T6					D
+
+2)
+	a:= 0
+	for i:=1 to 5 do begin
+	a:= a+1
+	i:= i+1
+	end
+
+							op	arg1	arg2	result
+							:=	0						a
+							:=  1						i
+		label_for	<=	i			5			T1
+							g=	T1		false	label_after
+							+		a			1			T2
+							:=	T2					a
+							+		i			1			T3
+							:=	T3					i
+							+		i			1			i
+					 go_to							label_for
+	label_after	...
+
+3)...
+	Expr -> ID							Expr.VarN <- Id.VarN
+	Expr -> Const						Expr.VarN <- Const.VarN
+	Expr0 -> Expr1 + Expr2 	Expr0.VarN <- newTemp
+													Expr0.Code = Expr1.Code || Expr2.Code || + Expr1.varN Expr2.varN Expr.varN
+													Atrib.Code = Exxpr.Code || := Expr.varN Id.VarN
+													...
+
+
+
+
+
+
+
+
+
+.

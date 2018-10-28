@@ -1,0 +1,232 @@
+  .keyboard {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media(max-width: 767px) {
+    .keyboard {
+      margin-left: 10px;
+    }
+    .keyboard div {
+      font-size: 14px;
+      width: 6%;
+    }
+    .keyboard .space {
+      width: 96%;
+      /*width: 83%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 19px;
+    }
+  }
+  @media(min-width: 768px){
+    .keyboard {
+      margin-left: 15px;
+    }
+    .keyboard div {
+      font-size: 18px;
+      width: 6.1%;
+    }
+    .keyboard .space {
+      width: 96.6%;
+      /*width: 83.4%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 25px;
+    }
+  }
+
+  @media(min-width: 900px){
+    .keyboard {
+      margin-left: 21px;
+    }
+    .keyboard div {
+      font-size: 21px;
+      width: 6.2%;
+    }
+    .keyboard .space {
+      width: 97.1%;
+      /*width: 83.3%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 29px;
+    }
+  }
+
+  @media(min-width: 1000px){
+    .keyboard .space {
+      width: 83.1%;
+    }
+    .keyboard .glyphicon {
+      font-size: 29px;
+    }
+  }
+  @media(min-width: 1100px){
+    .keyboard .space {
+      width: 95.9%;
+      /*width: 82.7%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 29px;
+    }
+  }
+  @media(min-width: 1200px) {
+    .keyboard {
+      margin-left: 35px;
+    }
+    .keyboard div {
+      font-size: 24px;
+      width: 6.3%;
+    }
+    .keyboard .space {
+      width: 96.6%;
+      /*width: 83.2%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  @media(min-width: 1300px){
+    .keyboard .space {
+      width: 96.2%;
+      /*width: 82.8%;*/
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  @media(min-width: 1404px){
+    .keyboard .space {
+      width: 95.9%;
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  @media(min-width: 1500px){
+    .keyboard .space {
+      width: 95.4%;
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  @media(min-width: 1720px){
+    .keyboard .space {
+      width: 95%;
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  @media(min-width: 1760px){
+    .keyboard .space {
+      width: 95%;
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+
+  @media(min-width: 2000px){
+    .keyboard .space {
+      width: 94.8%;
+    }
+    .keyboard .glyphicon {
+      font-size: 33px;
+    }
+  }
+  .keyboard div {
+    color: black;
+    float: left;
+    margin: 2px;
+    padding: 25px 0px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+  }
+  .capslock, .tab, .left-shift {
+    clear: left;
+  }
+  .keyboard .tab, .keyboard .delete {
+    width: 10%;
+  }
+  .keyboard .capslock {
+    width: 11.6%;
+  }
+
+  .keyboard .clear {
+    width: 11.4%
+  }
+  .keyboard .left-shift {
+    width: 15%;
+  }
+  .keyboard .right-shift {
+    width: 14.6%;
+  }
+  .keyboard .space {
+    clear: left;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .on {
+    display: none;
+  }
+  .keyboard div:hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+    background-color: #f1f1f1 ;
+    cursor: pointer;
+  }
+
+  
+  .numpad {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media(max-width: 767px) {
+  .numpad div {
+    font-size: 14px;
+  }
+}
+
+@media(min-width: 768px) {
+  .numpad div {
+    font-size: 18px;
+  }
+}
+
+@media(min-width: 992px) {
+  .numpad div {
+    font-size: 21px;
+  }
+}
+
+@media(min-width: 1200px) {
+  .numpad div {
+    font-size: 24px;
+  }
+}
+.numpad div {
+  color: black;
+  float: left;
+  width: 30%;
+  margin: 2px;
+  padding: 25px 0px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+}
+.numpad div:hover {
+  position: relative;
+  top: 1px;
+  left: 1px;
+  background-color: #f1f1f1 ;
+  cursor: pointer;
+}

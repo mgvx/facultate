@@ -1,0 +1,87 @@
+
+table {
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: lightblue;
+}
+
+img {
+    opacity: 0.3;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+#ceva{
+  color: white;
+  font-size: 40px;
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+
+  transition:2s;
+  -webkit-transition:2s;
+  -moz-transition:2s;
+  position:absolute;
+  right:calc(100% - 100px);
+  bottom:calc(100% - 100px);
+  }
+#ceva:hover {
+  right:0;
+  bottom:0;
+  background-color: red;
+}
+
+#ball{
+  color: black;
+  font-size: 40px;
+  background-color: yellow;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  position:absolute;
+  right:0px;
+
+}
+#ball:active {
+  animation: bounce 1s infinite alternate;
+  -webkit-animation: bounce 1s infinite alternate;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-255px);
+  }
+}
+@-webkit-keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-255px);
+  }
+}
+/*
+  transition:2s;
+  -webkit-transition:2s;
+  -moz-transition:2s;
+  position:absolute;
+  left:calc(100% - 100px);
+  bottom:calc(100% - 100px);
+  }
+#ball:hover {
+  bottom:0;
+}

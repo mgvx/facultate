@@ -1,0 +1,337 @@
+GRAMMAR:
+ P ->Aintmain()C
+VI ->+DIN|-DIN|0|DIN
+SO ->cout<<E;S
+ A ->#include<iostream>A|usingnamespacestd;
+ E ->IDEE|VIEE
+ S ->P|SA|SD|SI|SO|SC|SR|SF|SL|^
+SI ->cin>>ID;S
+EE ->+E|-E|*E|/E|^
+DI ->1|2|3|4|5|6|7|8|9
+SL ->whileSCCS
+ X ->XX|L|DI|0|^
+ID ->LX
+SD ->intID;S|floatID;S
+ L ->a|b|c|d|e|f|g|h|i|j|k|l|m|n|p|r|x|y|z|t|s
+ N ->NN|DI|0|^
+VF ->+N.NDI|-N.NDI|N.NDI
+SC ->(E<E)|(E>E)|(E==E)|(E!=E)
+SR ->return0;S
+SF ->if(SC)CS
+ C ->{S}
+SA ->ID=E;S
+
+AUGMENTED GRAMMAR:
+1 :  S  ->  P
+2 :  P  ->  Aintmain()C
+3 :  A  ->  #include<iostream>A
+4 :  A  ->  usingnamespacestd;
+5 :  C  ->  {S}
+6 :  S  ->  SA
+7 :  S  ->  SD
+8 :  S  ->  SI
+9 :  S  ->  SO
+10 :  S  ->  SC
+11 :  S  ->  SR
+12 :  S  ->  SF
+13 :  S  ->  SL
+14 :  S  ->  ^
+15 :  SA  ->  ID=E;S
+16 :  SD  ->  intID;S
+17 :  SD  ->  floatID;S
+18 :  ID  ->  LX
+19 :  L  ->  a
+20 :  L  ->  b
+21 :  L  ->  c
+22 :  L  ->  d
+23 :  L  ->  e
+24 :  L  ->  f
+25 :  L  ->  g
+26 :  L  ->  h
+27 :  L  ->  i
+28 :  L  ->  j
+29 :  L  ->  k
+30 :  L  ->  l
+31 :  L  ->  m
+32 :  L  ->  n
+33 :  L  ->  p
+34 :  L  ->  r
+35 :  L  ->  x
+36 :  L  ->  y
+37 :  L  ->  z
+38 :  L  ->  t
+39 :  L  ->  s
+40 :  X  ->  XX
+41 :  X  ->  L
+42 :  X  ->  DI
+43 :  X  ->  0
+44 :  X  ->  ^
+45 :  DI  ->  1
+46 :  DI  ->  2
+47 :  DI  ->  3
+48 :  DI  ->  4
+49 :  DI  ->  5
+50 :  DI  ->  6
+51 :  DI  ->  7
+52 :  DI  ->  8
+53 :  DI  ->  9
+54 :  SL  ->  whileSCCS
+55 :  SC  ->  (E<E)
+56 :  SC  ->  (E>E)
+57 :  SC  ->  (E==E)
+58 :  SC  ->  (E!=E)
+59 :  E  ->  IDEE
+60 :  E  ->  VIEE
+61 :  EE  ->  +E
+62 :  EE  ->  -E
+63 :  EE  ->  *E
+64 :  EE  ->  /E
+65 :  EE  ->  ^
+66 :  VI  ->  +DIN
+67 :  VI  ->  -DIN
+68 :  VI  ->  0
+69 :  VI  ->  DIN
+70 :  VF  ->  +N.NDI
+71 :  VF  ->  -N.NDI
+72 :  VF  ->  N.NDI
+73 :  N  ->  NN
+74 :  N  ->  DI
+75 :  N  ->  0
+76 :  N  ->  ^
+77 :  SF  ->  if(SC)CS
+78 :  SI  ->  cin>>ID;S
+79 :  SO  ->  cout<<E;S
+80 :  SR  ->  return0;S
+
+TERMINALS   : ['int', 'main', '(', ')', '#', 'include', '<', 'iostream', '>', 'using', 'namespace', 'std', ';', '{', '}', '=', 'float', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 'x', 'y', 'z', 't', 's', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'while', '==', '!=', '+', '-', '*', '/', '.', 'if', 'cin', '>>', 'cout', '<<', 'return', '$']
+NONTERMINALS: ['S', 'P', 'A', 'C', 'SA', 'SD', 'SI', 'SO', 'SC', 'SR', 'SF', 'SL', 'ID', 'E', 'L', 'X', 'DI', 'EE', 'VI', 'N', 'VF']
+SYMBOLS     : ['int', 'main', '(', ')', '#', 'include', '<', 'iostream', '>', 'using', 'namespace', 'std', ';', '{', '}', '=', 'float', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 'x', 'y', 'z', 't', 's', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'while', '==', '!=', '+', '-', '*', '/', '.', 'if', 'cin', '>>', 'cout', '<<', 'return', '$', 'S', 'P', 'A', 'C', 'SA', 'SD', 'SI', 'SO', 'SC', 'SR', 'SF', 'SL', 'ID', 'E', 'L', 'X', 'DI', 'EE', 'VI', 'N', 'VF']
+
+do_first:
+ P ={#, using}
+VI ={+, -, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+SO ={cout}
+ A ={#, using}
+ E ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, +, -, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+ S ={#, using, a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, int, float, cin, cout, (, return, if, while, ^}
+SI ={cin}
+EE ={+, -, *, /, ^}
+DI ={1, 2, 3, 4, 5, 6, 7, 8, 9}
+SL ={while}
+ X ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ^}
+ID ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s}
+SD ={int, float}
+ L ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s}
+ N ={1, 2, 3, 4, 5, 6, 7, 8, 9, 0, ^}
+VF ={+, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, .}
+SC ={(}
+SR ={return}
+SF ={if}
+ C ={{}
+SA ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s}
+
+do_follow:
+ P ={$, }}
+VI ={+, -, *, /, ;, <, >, ==, !=}
+SO ={$, }}
+ A ={int}
+ E ={;, <, >, ==, !=}
+ S ={$, }}
+SI ={$, }}
+EE ={;, <, >, ==, !=}
+DI ={1, 2, 3, 4, 5, 6, 7, 8, 9, 0, +, -, *, /, ;, <, >, ==, !=, a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, =, .}
+SL ={$, }}
+ X ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, +, -, *, /, ;, <, >, ==, !=, =}
+ID ={+, -, *, /, ;, <, >, ==, !=, =}
+SD ={$, }}
+ L ={a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, +, -, *, /, ;, <, >, ==, !=, =}
+ N ={+, -, *, /, ;, <, >, ==, !=, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, .}
+VF ={}
+SC ={$, }, {, )}
+SR ={$, }}
+SF ={$, }}
+ C ={$, }, #, using, a, b, c, d, e, f, g, h, i, j, k, l, m, n, p, r, x, y, z, t, s, int, float, cin, cout, (, return, if, while}
+SA ={$, }}
+PARSING TABLE:
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+|Terminal|  int   |  main  |   (    |   )    |   #    |include |   <    |iostream|   >    | using  |namespace|  std   |   ;    |   {    |   }    |   =    | float  |   a    |   b    |   c    |   d    |   e    |   f    |   g    |   h    |   i    |   j    |   k    |   l    |   m    |   n    |   p    |   r    |   x    |   y    |   z    |   t    |   s    |   0    |   1    |   2    |   3    |   4    |   5    |   6    |   7    |   8    |   9    | while  |   ==   |   !=   |   +    |   -    |   *    |   /    |   .    |   if   |  cin   |   >>   |  cout  |   <<   | return |   $    |
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+|   S    |   7    |   0    |   10   |   0    |   1    |   0    |   14   |   0    |   14   |   1    |   0    |   0    |   14   |   0    |   14   |   14   |   7    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   6    |   14   |   14   |   14   |   14   |   14   |   14   |   14   |   14   |   14   |   14   |   13   |   14   |   14   |   14   |   14   |   14   |   14   |   14   |   12   |   8    |   0    |   9    |   0    |   11   |   14   |
+|   P    |   0    |   0    |   0    |   0    |   2    |   0    |   0    |   0    |   0    |   2    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   A    |   0    |   0    |   0    |   0    |   3    |   0    |   0    |   0    |   0    |   4    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   C    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   5    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   SA   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   15   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   SD   |   16   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   17   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   SI   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   78   |   0    |   0    |   0    |   0    |   0    |
+|   SO   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   79   |   0    |   0    |   0    |
+|   SC   |   0    |   0    |   58   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   SR   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   80   |   0    |
+|   SF   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   77   |   0    |   0    |   0    |   0    |   0    |   0    |
+|   SL   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   54   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   ID   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   18   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   E    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   59   |   60   |   60   |   60   |   60   |   60   |   60   |   60   |   60   |   60   |   60   |   0    |   0    |   0    |   60   |   60   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   L    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   19   |   20   |   21   |   22   |   23   |   24   |   25   |   26   |   27   |   28   |   29   |   30   |   31   |   32   |   33   |   34   |   35   |   36   |   37   |   38   |   39   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   X    |   0    |   0    |   0    |   0    |   0    |   0    |   44   |   0    |   44   |   0    |   0    |   0    |   44   |   0    |   44   |   44   |   0    |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   41   |   43   |   42   |   42   |   42   |   42   |   42   |   42   |   42   |   42   |   42   |   0    |   44   |   44   |   44   |   44   |   44   |   44   |   44   |   0    |   0    |   0    |   0    |   0    |   0    |   44   |
+|   DI   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   45   |   46   |   47   |   48   |   49   |   50   |   51   |   52   |   53   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   EE   |   0    |   0    |   0    |   0    |   0    |   0    |   65   |   0    |   65   |   0    |   0    |   0    |   65   |   0    |   65   |   65   |   0    |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   65   |   0    |   65   |   65   |   61   |   62   |   63   |   64   |   65   |   0    |   0    |   0    |   0    |   0    |   0    |   65   |
+|   VI   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   68   |   69   |   69   |   69   |   69   |   69   |   69   |   69   |   69   |   69   |   0    |   0    |   0    |   66   |   67   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
+|   N    |   0    |   0    |   0    |   0    |   0    |   0    |   76   |   0    |   76   |   0    |   0    |   0    |   76   |   0    |   76   |   76   |   0    |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   75   |   74   |   74   |   74   |   74   |   74   |   74   |   74   |   74   |   74   |   0    |   76   |   76   |   76   |   76   |   76   |   76   |   76   |   0    |   0    |   0    |   0    |   0    |   0    |   76   |
+|   VF   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   72   |   72   |   72   |   72   |   72   |   72   |   72   |   72   |   72   |   72   |   0    |   0    |   0    |   70   |   71   |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |   0    |
++--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+['#', 'include', '<', 'iostream', '>', 'using', 'namespace', 'std', ';', 'int', 'main', '(', ')', '{', 'int', 'n', ';', 'float', 's', ';', 'float', 'x', ';', 'cin', '>>', 'n', ';', 's', '=', '0', ';', 'while', '(', 'n', '!=', '0', ')', '{', 'n', '=', 'n', '-', '1', ';', 'cin', '>>', 'x', ';', 's', '=', 's', '+', 'x', ';', '}', 'cout', '<<', 's', ';', 'return', '0', ';', '}', '$']
+|  STEP  |           INPUT            |           STACK            |do_something|
+|   1    | S$                         | #include<iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p1    |
+|   2    | P$                         | #include<iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p2    |
+|   3    | Aintmain()C$               | #include<iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p3    |
+|   4    | #include<iostream>Aintmain()C$| #include<iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   5    | include<iostream>Aintmain()C$| include<iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   6    | <iostream>Aintmain()C$     | <iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   7    | iostream>Aintmain()C$      | iostream>usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   8    | >Aintmain()C$              | >usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   9    | Aintmain()C$               | usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p4    |
+|   10   | usingnamespacestd;intmain()C$| usingnamespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   11   | namespacestd;intmain()C$   | namespacestd;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   12   | std;intmain()C$            | std;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   13   | ;intmain()C$               | ;intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   14   | intmain()C$                | intmain(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   15   | main()C$                   | main(){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   16   | ()C$                       | (){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   17   | )C$                        | ){intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   18   | C$                         | {intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p5    |
+|   19   | {S}$                       | {intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   20   | S}$                        | intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p7    |
+|   21   | SD}$                       | intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p16   |
+|   22   | intID;S}$                  | intn;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   23   | ID;S}$                     | n;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   24   | LX;S}$                     | n;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p32   |
+|   25   | nX;S}$                     | n;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   26   | X;S}$                      | ;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   27   | ^;S}$                      | ;floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   28   | S}$                        | floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p7    |
+|   29   | SD}$                       | floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p17   |
+|   30   | floatID;S}$                | floats;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   31   | ID;S}$                     | s;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   32   | LX;S}$                     | s;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p39   |
+|   33   | sX;S}$                     | s;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   34   | X;S}$                      | ;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   35   | ^;S}$                      | ;floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   36   | S}$                        | floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p7    |
+|   37   | SD}$                       | floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p17   |
+|   38   | floatID;S}$                | floatx;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   39   | ID;S}$                     | x;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   40   | LX;S}$                     | x;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p35   |
+|   41   | xX;S}$                     | x;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   42   | X;S}$                      | ;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   43   | ^;S}$                      | ;cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   44   | S}$                        | cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p8    |
+|   45   | SI}$                       | cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p78   |
+|   46   | cin>>ID;S}$                | cin>>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   47   | >>ID;S}$                   | >>n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   48   | ID;S}$                     | n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   49   | LX;S}$                     | n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p32   |
+|   50   | nX;S}$                     | n;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   51   | X;S}$                      | ;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   52   | ^;S}$                      | ;s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   53   | S}$                        | s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p6    |
+|   54   | SA}$                       | s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p15   |
+|   55   | ID=E;S}$                   | s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   56   | LX=E;S}$                   | s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p39   |
+|   57   | sX=E;S}$                   | s=0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   58   | X=E;S}$                    | =0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   59   | ^=E;S}$                    | =0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   60   | E;S}$                      | 0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p60   |
+|   61   | VIEE;S}$                   | 0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p68   |
+|   62   | 0EE;S}$                    | 0;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   63   | EE;S}$                     | ;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p65   |
+|   64   | ^;S}$                      | ;while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   65   | S}$                        | while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p13   |
+|   66   | SL}$                       | while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p54   |
+|   67   | whileSCCS}$                | while(n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   68   | SCCS}$                     | (n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p58   |
+|   69   | (E!=E)CS}$                 | (n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   70   | E!=E)CS}$                  | n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p59   |
+|   71   | IDEE!=E)CS}$               | n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   72   | LXEE!=E)CS}$               | n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p32   |
+|   73   | nXEE!=E)CS}$               | n!=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   74   | XEE!=E)CS}$                | !=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   75   | ^EE!=E)CS}$                | !=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p65   |
+|   76   | ^!=E)CS}$                  | !=0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   77   | E)CS}$                     | 0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p60   |
+|   78   | VIEE)CS}$                  | 0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p68   |
+|   79   | 0EE)CS}$                   | 0){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   80   | EE)CS}$                    | ){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |     j    |
+|   81   | )CS}$                      | ){n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   82   | CS}$                       | {n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p5    |
+|   83   | {S}S}$                     | {n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   84   | S}S}$                      | n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p6    |
+|   85   | SA}S}$                     | n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p15   |
+|   86   | ID=E;S}S}$                 | n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   87   | LX=E;S}S}$                 | n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p32   |
+|   88   | nX=E;S}S}$                 | n=n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   89   | X=E;S}S}$                  | =n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   90   | ^=E;S}S}$                  | =n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   91   | E;S}S}$                    | n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p59   |
+|   92   | IDEE;S}S}$                 | n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|   93   | LXEE;S}S}$                 | n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p32   |
+|   94   | nXEE;S}S}$                 | n-1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   95   | XEE;S}S}$                  | -1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p44   |
+|   96   | ^EE;S}S}$                  | -1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p62   |
+|   97   | -E;S}S}$                   | -1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|   98   | E;S}S}$                    | 1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p60   |
+|   99   | VIEE;S}S}$                 | 1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p69   |
+|  100   | DINEE;S}S}$                | 1;cin>>x;s=s+x;}cout<<s;return0;}$ |    p45   |
+|  101   | 1NEE;S}S}$                 | 1;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  102   | NEE;S}S}$                  | ;cin>>x;s=s+x;}cout<<s;return0;}$ |    p76   |
+|  103   | ^EE;S}S}$                  | ;cin>>x;s=s+x;}cout<<s;return0;}$ |    p65   |
+|  104   | ^;S}S}$                    | ;cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  105   | S}S}$                      | cin>>x;s=s+x;}cout<<s;return0;}$ |    p8    |
+|  106   | SI}S}$                     | cin>>x;s=s+x;}cout<<s;return0;}$ |    p78   |
+|  107   | cin>>ID;S}S}$              | cin>>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  108   | >>ID;S}S}$                 | >>x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  109   | ID;S}S}$                   | x;s=s+x;}cout<<s;return0;}$ |    p18   |
+|  110   | LX;S}S}$                   | x;s=s+x;}cout<<s;return0;}$ |    p35   |
+|  111   | xX;S}S}$                   | x;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  112   | X;S}S}$                    | ;s=s+x;}cout<<s;return0;}$ |    p44   |
+|  113   | ^;S}S}$                    | ;s=s+x;}cout<<s;return0;}$ |    pop   |
+|  114   | S}S}$                      |  s=s+x;}cout<<s;return0;}$ |    p6    |
+|  115   | SA}S}$                     |  s=s+x;}cout<<s;return0;}$ |    p15   |
+|  116   | ID=E;S}S}$                 |  s=s+x;}cout<<s;return0;}$ |    p18   |
+|  117   | LX=E;S}S}$                 |  s=s+x;}cout<<s;return0;}$ |    p39   |
+|  118   | sX=E;S}S}$                 |  s=s+x;}cout<<s;return0;}$ |    pop   |
+|  119   | X=E;S}S}$                  |   =s+x;}cout<<s;return0;}$ |    p44   |
+|  120   | ^=E;S}S}$                  |   =s+x;}cout<<s;return0;}$ |    pop   |
+|  121   | E;S}S}$                    |    s+x;}cout<<s;return0;}$ |    p59   |
+|  122   | IDEE;S}S}$                 |    s+x;}cout<<s;return0;}$ |    p18   |
+|  123   | LXEE;S}S}$                 |    s+x;}cout<<s;return0;}$ |    p39   |
+|  124   | sXEE;S}S}$                 |    s+x;}cout<<s;return0;}$ |    pop   |
+|  125   | XEE;S}S}$                  |     +x;}cout<<s;return0;}$ |    p44   |
+|  126   | ^EE;S}S}$                  |     +x;}cout<<s;return0;}$ |    p61   |
+|  127   | +E;S}S}$                   |     +x;}cout<<s;return0;}$ |    pop   |
+|  128   | E;S}S}$                    |      x;}cout<<s;return0;}$ |    p59   |
+|  129   | IDEE;S}S}$                 |      x;}cout<<s;return0;}$ |    p18   |
+|  130   | LXEE;S}S}$                 |      x;}cout<<s;return0;}$ |    p35   |
+|  131   | xXEE;S}S}$                 |      x;}cout<<s;return0;}$ |    pop   |
+|  132   | XEE;S}S}$                  |       ;}cout<<s;return0;}$ |    p44   |
+|  133   | ^EE;S}S}$                  |       ;}cout<<s;return0;}$ |    p65   |
+|  134   | ^;S}S}$                    |       ;}cout<<s;return0;}$ |    pop   |
+|  135   | S}S}$                      |        }cout<<s;return0;}$ |    p14   |
+|  136   | ^}S}$                      |        }cout<<s;return0;}$ |    pop   |
+|  137   | S}$                        |         cout<<s;return0;}$ |    p9    |
+|  138   | SO}$                       |         cout<<s;return0;}$ |    p79   |
+|  139   | cout<<E;S}$                |         cout<<s;return0;}$ |    pop   |
+|  140   | <<E;S}$                    |             <<s;return0;}$ |    pop   |
+|  141   | E;S}$                      |               s;return0;}$ |    p59   |
+|  142   | IDEE;S}$                   |               s;return0;}$ |    p18   |
+|  143   | LXEE;S}$                   |               s;return0;}$ |    p39   |
+|  144   | sXEE;S}$                   |               s;return0;}$ |    pop   |
+|  145   | XEE;S}$                    |                ;return0;}$ |    p44   |
+|  146   | ^EE;S}$                    |                ;return0;}$ |    p65   |
+|  147   | ^;S}$                      |                ;return0;}$ |    pop   |
+|  148   | S}$                        |                 return0;}$ |    p11   |
+|  149   | SR}$                       |                 return0;}$ |    p80   |
+|  150   | return0;S}$                |                 return0;}$ |    pop   |
+|  151   | 0;S}$                      |                       0;}$ |    pop   |
+|  152   | ;S}$                       |                        ;}$ |    pop   |
+|  153   | S}$                        |                         }$ |    p14   |
+|  154   | ^}$                        |                         }$ |    pop   |
+|  155   | $                          |                          $ | ACCEPTED |

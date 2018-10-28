@@ -1,0 +1,178 @@
+
+######################################################################################################################## SEMINAR 1
+
+struct Account {
+	int balance;
+	mutex mtx;
+} a, b;
+
+void transfer (Account *a, Account *b, int amount) {
+	a -> mtx.lock();
+	a -> balance -= amount;
+	a -> mtx.unlock();
+
+	b -> mtx.lock();
+	b -> balance += amount;
+	b -> mtx.unlock();
+}
+
+# deadlockable
+void transfer (Account *a, Account *b, int amount) {
+	a -> mtx.lock();
+	b -> mtx.lock();
+
+	a -> balance -= amount;
+	b -> balance += amount;
+
+	a -> mtx.unlock();
+	b -> mtx.unlock();
+}
+
+# solution: lock the resources in the same order!
+if (a->id < b->id) {
+	a -> mtx.lock();
+	b -> mtx.lock();
+}
+else {
+	b -> mtx.lock();
+	a -> mtx.lock();
+}
+
+
+# solution: try_lock();
+a -> mtx.lock();
+while (!b -> mtx.try_lock()) {
+	a -> mtx.unlock();
+	sleep( random());
+	a -> mtx.lock();
+}
+
+######################################################################################################################## SEMINAR 2
+
+Double linked list
+parse (iterate)
+insert (before/after current element)
+List:
+- begin()
+- end()
+- insert( it, value)
+- erace( it)
+
+1) mutex on list:
+	destruct on list + use (prev_aquired iterator)
+	- undefined behaviour
+	- iterator invaluated
+	- value is still there;... throw
+
+
+struct Node {
+	const List *parent_list; // solution 2
+	Value val;
+	Node *next;
+	Node *prev;
+}
+
+class list {
+	Node placeholder;
+	mutex mtx;
+}
+
+class iterator {
+	Node *current;
+	List *parent_list; // solution 1
+}
+
+
+insert( iterator *it, Value val) {
+	Node *newNode - new Node;
+	newNode -> value = v;
+
+	it.current -> prevmtx.lock();
+	it.current -> prev -> nextmtx.lock();
+
+	NewNode -> prev = it.current ->prev;
+	it.current -> prev -> next = newNode;
+	newNode -> next = it.current
+	it.current -> prev = newNode;
+
+	it.current -> prevmtx.unlock();
+	it.current -> prev -> nextmtx.unlock();
+}
+
+operator -- () {
+	current -> prevmtx.lock();
+	current = current -> prev;
+	current -> prevmtx.unlock();
+}
+
+operator ++ () {
+	current -> nextmtx.lock();
+	current = current -> next;
+	current -> nextmtx.unlock();
+}
+
+erase () {
+	it.current -> prevmtx.lock();
+	it.current -> prev -> nextmtx.lock();
+	it.current ->	nextmtx.lock();
+	it.current -> next -> prevmtx.lock()
+
+	it.current -> next -> prev = it.current -> prev;
+	it.current -> prev -> next = it.current -> next;
+	delete(it.current);
+
+	it.current -> prevmtx.unlock();
+	it.current -> prev -> nextmtx.unlock();
+	it.current ->	nextmtx.unlock();
+	it.current -> next -> prevmtx.unlock()
+}
+// hint: ++it then erase prev
+
+
+######################################################################################################################## SEMINAR 3
+
+producer: value...
+					result.seValue(value)
+consumer 1:
+		r = result.getValue()
+		use(r)
+
+template <typename T>
+class Future {
+	public:
+		void setValue(T const &v); // can be called only once
+		T const & getValue();
+
+	private:
+		bool hasValue = false;
+		T value;
+		mutex mtx;
+		conditional_variable cond;
+}
+// without mutex race condition
+
+getValue() {
+	unique_lock <mutex> lck(mtx);
+	while(!hasValue) {
+		cond.wait();
+	}
+	return value;
+}
+
+setValue(T const & v) {
+	value = v;
+	hasValue = true;
+	cond.notify();
+}
+
+######################################################################################################################## SEMINAR 4
+
+
+
+
+
+
+
+
+
+.

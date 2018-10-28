@@ -1,0 +1,28 @@
+<div *ngIf="teacher" class="col-md-6 col-md-offset-3">
+    <h2>Teacher {{teacher.id}} Details</h2>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-4">Name: </label>
+            <div class="col-sm-8">
+                <input [(ngModel)]="teacher.name" placeholder="name" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">email: </label>
+            <div class="col-sm-8">
+                <input [(ngModel)]="teacher.email" placeholder="email" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">password: </label>
+            <div class="col-sm-8">
+                <input [(ngModel)]="teacher.password" placeholder="password" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <button (click)="goBack()" class="btn btn-default">Back</button>
+            <!--<button (click)="save()" class="btn btn-default">Save</button>-->
+        </div>
+    </div>
+</div>

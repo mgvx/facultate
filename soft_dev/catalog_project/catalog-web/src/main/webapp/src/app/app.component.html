@@ -1,0 +1,28 @@
+<!--<h1>{{title}}</h1>-->
+<!--<nav>-->
+    <!--<a routerLink="/students" routerLinkActive="active">Students</a>-->
+    <!--<a routerLink="/teachers" routerLinkActive="active">Teachers</a>-->
+<!--</nav>-->
+
+<!--<router-outlet></router-outlet>-->
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/" routerLinkActive="active">{{title}}</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a routerLink="/students" routerLinkActive="active">Students</a></li>
+            <li><a routerLink="/teachers" routerLinkActive="active">Teachers</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

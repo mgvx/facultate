@@ -1,0 +1,34 @@
+.col-md-12
+  .col-md-9
+    %h1
+      .pull-left
+        &nbsp
+        = link_to questions_path do
+          %i.fa.fa-angle-double-left
+      = @question.title
+  .col-md-9
+    .card
+      .body-question
+        = @question.body
+      .footer
+        .pull-right
+          posted by #{@question.user.email} #{time_ago_in_words(@question.created_at)} ago
+          - if user_signed_in?
+            - if current_user.id == @question.user.id
+              = link_to edit_question_path(@question) do
+                %i.fa.fa-pencil
+              = link_to question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.fa.fa-trash
+        .clearfix
+    %h2 Answers:
+    = render @question.answers
+    - if user_signed_in?
+      %h2 Add an answer:
+      = render 'answers/form'
+  .col-md-3
+    %h3 Similar Questions:
+    - @similar_questions.each do |question|
+      = link_to question_path(question) do
+        .pop-card
+          .suggestion
+            = question.title

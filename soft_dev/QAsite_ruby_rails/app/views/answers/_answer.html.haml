@@ -1,0 +1,10 @@
+.card
+  .body-answer
+    = answer.body
+  .footer
+    .pull-right
+      posted by #{answer.user.email} #{time_ago_in_words(answer.created_at)} ago
+      - if user_signed_in? && current_user.id == answer.user_id
+        = link_to question_answer_path(@question.id,answer.id), method: :delete, data: { confirm: 'Are you sure?' } do
+          %i.fa.fa-trash
+    .clearfix

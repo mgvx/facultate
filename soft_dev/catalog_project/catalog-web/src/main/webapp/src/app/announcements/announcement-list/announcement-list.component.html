@@ -1,0 +1,27 @@
+<h2>Announcements: </h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Desc</th>
+        <!--<th>Del</th>-->
+    </tr>
+    </thead>
+
+    <tbody class="announcements">
+    <tr *ngFor="let announcement of announcements; let i = index"
+        [class.selected]="announcement === selectedAnnouncement"
+        (click)="onSelect(announcement)">
+        <!--<td> {{i}} </td>-->
+        <td>{{announcement.title}}</td>
+        <td>{{announcement.descr}}</td>
+        <!--<td><button class="delete" (click)="delete(announcement); $event.stopPropagation()" class="btn btn-danger">x</button></td>-->
+    </tr>
+    </tbody>
+</table>
+
+
+<!--<div *ngIf="selectedAnnouncement" class="col-md-12">-->
+    <!--<button (click)="gotoDetail()" class="btn btn-default">{{selectedAnnouncement.title}}  Details</button>-->
+<!--</div>-->

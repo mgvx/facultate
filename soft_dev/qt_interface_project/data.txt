@@ -1,0 +1,5 @@
+chia,pisi,4,https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Kittyply_edit1.jpg/800px-Kittyply_edit1.jpg,1,
+mufy,bela,5,https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/TapetumLucidum.JPG/800px-TapetumLucidum.JPG,0,
+lulu,siamiz,3,https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Gato_enervado_pola_presencia_dun_can.jpg/770px-Gato_enervado_pola_presencia_dun_can.jpg,1,
+zigz,pisi,2,https://upload.wikimedia.org/wikipedia/commons/1/1e/Large_Siamese_cat_tosses_a_mouse.jpg,0,
+pao,furry,2,https://upload.wikimedia.org/wikipedia/commons/7/75/Cat_eating_a_rabbit.jpeg,0,

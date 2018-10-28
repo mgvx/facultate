@@ -1,0 +1,6 @@
+<div *ngIf="teacher" class="col-md-6 col-md-offset-3">
+    <h2>Welcome Teacher {{teacher.name}}</h2>
+    <button (click)="createAnnouncement()" class="btn btn-default">Create Announcement</button>
+    <ubb-announcement-list></ubb-announcement-list>
+    <button (click)="goBack()" class="btn btn-default">Logout</button>
+</div>

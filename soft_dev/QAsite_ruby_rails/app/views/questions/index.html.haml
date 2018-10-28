@@ -1,0 +1,32 @@
+.col-md-12
+  %h1 All Questions
+  %br
+  .col-md-12
+    .col-md-6.col-md-offset-3
+      = form_tag questions_path, method: :get do
+        .input-group
+          = text_field_tag :query, params[:query], class: "form-control"
+          %span.input-group-btn
+            = submit_tag "Search", class: "btn btn-default"
+  %br
+  %br
+  %br
+  - @questions.each do |question|
+    .col-md-3
+      = link_to question_path(question) do
+        .pop-card
+          .question
+            = truncate(question.title, length: 46)
+          .footer
+            %br
+            .pull-left
+              #{question.answers.size} answers
+            .pull-right
+              by #{question.user.email}
+            .clearfix
+.col-md-12
+  %br
+  %br
+  %br
+.navbar-fixed-bottom
+  = will_paginate @questions

@@ -1,0 +1,114 @@
+*, *:before, *:after {margin: 0; padding: 0; box-sizing: border-box;}
+body {
+  background: white;
+  color: black;
+  font: 14px 'Open Sans',sans-serif;
+  height:100%;
+}
+
+.top {
+  padding-right: 20px;
+  background: purple;
+  text-align: right;
+}
+
+h1 {
+  padding: 100px 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+p {
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.main {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 800px;
+}
+.content {
+  background: #fff;
+  color: black;
+}
+.content > div {
+  display: none;
+  padding: 20px 25px 5px;
+}
+
+input[type=radio]  {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  color: #fff;
+  padding: 5px 25px;
+  font-weight: 600;
+  text-align:
+  center;background: purple;
+}
+label:hover {
+  color: #fff;
+  text-decoration:
+  underline;
+  cursor: pointer;
+}
+input:checked + label {
+  color: #fff;
+}
+
+#tab1:checked ~ .content #content1,
+#tab2:checked ~ .content #content2,
+#tab3:checked ~ .content #content3,
+#tab4:checked ~ .content #content4 {
+  display: block;
+}
+
+form {
+    background-color: white;
+    font-size: 18px;
+}
+form label {
+    background-color: blue;
+    border-radius: 6px;
+}
+input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-color: blue;
+}
+
+
+.leftcol {
+	width: 20%;
+	height: 80%;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.centercol {
+	width: 50%;
+	height: 100%;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+.rightcol {
+	width: 30%;
+	height: 80%;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+.menus {
+  height: 100%;
+  background: purple;
+}

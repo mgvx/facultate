@@ -1,0 +1,182 @@
+Obiective
+
+- agenti ~ multi agent systems
+- dai (distributed ai)
+- search
+    - dai
+    - csp (constrain satisfaction problems) ~ dcsp (distributed csp)
+    - pfp (path finding problems) ~ spfp
+    - problem solving ~ planning
+    - learning ~ dl
+
+Notare
+- 50% referat tematic (curs s7)
+    - articol ~ 10 pagini / articole cercetare
+    - prezentare orala + discutii
+- 30% proiect software
+- 20% nota activitate ~ prezente
+
+
+
+Agenti:
+- AI
+- SE
+conceptare AI
+metode
+- conceptualizare
+- proiectare
+- implementare
+/// sisteme software complexe
+FIPA foundation of inteligent physical agents
+
+agent artificial:
+entitate computationala care:
+  - situata intr-un mediu
+  - percepe si actioneaza asupra mediului
+  - autonomie
+  - actioneaza in scopu unui utilizator
+
+invatare -> inteligenta
+
+MAS : multi agent sistem
+DAI : distributed ai
+  ai / se / sociologie / economie / psihologie ...
+
+MAS include DAI
+DAI ~ when and how to interect with whom?
+focus on agents interactions not individuals
+
+agent trivial: thermostat software_daemons
+uses:
+industrial: trafic aerian
+comercial: ecommerce, bussiness process management
+medicine: monitorizare
+entertainment: videogames
+
+
+Agenti:
+De ce?
+- delegare (sofer autonom)
+- evolutia programarii (se) cod masina -> pct -> TAD -> obiecte -> agenti ~ agenti software
+- inteligenta
+~ sisteme autonome (asupra starii interne si comportament) ce actioneaza in interesu utilizatorului
+AI agenti vs sisteme expert
+SE agenti vs proceduri / obiecte
+
+Domenii de aplicare:
+- sisteme distribuite (DSNE)
+    - programare concurenta orientata obiect
+    - control procese (industriale) optimizare
+    - DVM (distributed vehicle monitoring)
+- networks
+    - agenti mobili ~ telescript ~ remote programming
+    - JADE
+- HCI (human computer interaction)
+    - PA (personal assistant, adaptive interfaces)
+    - mit Pattie Maies -> email manager Maxims
+- web agents (internet agents)
+    - PDA
+    - softbot
+    - ecommerce
+    - user profiling
+
+
+
+
+Agenti:
+SE: new software class -> software agents, abstractizare software, sisteme complexe, agent based systems
+AI: distributed problem solving (DPS), ML
+
+Agent: Perception / Action / Goal / Environment ~ State
+ex: vacuum cleaner, autonomous driver, backgammon player, softbot
+
+Environment Properties:
+- accesibil (perceptie=stare) / inaccesibil
+- determinist / nedeterminist (probability of transition)
+- episodic / nonepisodic (req planning)
+- static / dynamic (processes)
+- monoagent / multiagent
+- (assumption) markovian / nonmarkovian
+
+sytem complex   system bazat pe agenti
+subsystem       organization
+componente      agenti
+interactioni    coordonare / cooperare / negociere
+
+implementation: AOP (agent oriented programming)
+Agent Spark, Agent 0
+
+
+AI: problem solving (searching)
+
+probleme:
+- recuperabile (labirint)
+- ignorabile (dem teoremelor)
+- irecuperabile (jocuri ~ planning medii secventiale)
+
+agenti:
+- reactivi (raspuns direct rapid la stare curenta a mediului)
+- deliberativi (planifica actiunea)
+
+AI:
+- symbolic AI (expert system)
+- computational Intelligence (ml, agenti, tehnici evolutive)
+
+learning:
+- offline
+- online
+
+Distributed Problem Solving:
+- problem decomposition
+- task allocation
+- task accomplishment
+- result synthesis
+
+distrib sensor network
+distrib vehicle monitoring
+distrib delivery
+
+DAI: rezolvare colaborativa -> mai multi agenti
+agentii opereaza pe cunostintee partiale
+~ asynchronous search algorithm (mostly)
+
+Search Algorithms:
+- completeness (will find a solution if it exists)
+- optimality (the solution found will be optimal)
+ / admissible (complete and optimal)
+- complexity space/time
+
+A* is exponential in space and time but can aproach polinomial with good heuristic
+
+CSP (constrain satisfaction problem)
+<X, D, C> <variables, domeains, constrains>
+Ci -> Pi (xi1, xi2, ...), Pi: Di1 x Di2 x ..
+
+BSE: search based system engineering
+shedulling problems
+medicina ADN optimizare terapii modele computationale
+
+overconstrained problems
+solution cant satisfy all constrains
+
+- propagare constrangeri
+- cautare solutii (intelligent backtracking, look forward algorithm)
+- heuristic approaches (local search, genetic algorithms)
+
+CSP binar (constrangeri binare/unare)
+
+greedy: from local optima to global optima
+dynamic prog: from global optima to local optima
+
+
+
+
+
+
+
+
+
+
+
+
+.
