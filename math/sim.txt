@@ -1,0 +1,11 @@
+lane formation - pedestrain crossing
+
+initialize
+compute ext forcese
+        pairwise forces
+move particle
+zero all forces
+log every x step
+
+rand() % 10
+n * rand() / (RAND_MAX + ?)

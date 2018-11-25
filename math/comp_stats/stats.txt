@@ -1,0 +1,66 @@
+smicula@math.ubbcluj.ro
+smicula@yahoo.com
+
+
+2.
+a)  poisspdf(5,9)
+b)  1 - poisscdf(4,9)
+
+
+3.  n=20, p=0.2
+a)  binomial bino(20, 0.2)
+    P(X>=5) = 1-P(X<4) = 1-binocdf(4,20,0.2)
+b)  the 3rd success in at least 6 trials (~ 3 failures)
+    Nbin(3, 0.8), P(X>=3) = 1-nbincdf(2,3,0.8)
+
+
+4.  X num of people who buy the adv version
+    C completed levels
+    B buy adv version
+    P(C) = 0.6
+    P(B|C) = 0.3
+    B intersec C = C
+    P(B) = P(B intersect C) = P(B|C)*P(C) = 0.3 * 0.6
+    Bino n=15, p=0.18
+a)  P(X>2) = 1-binocdf(1,15,0.18)
+b)  E(X) = n*p = 2.7
+    binostat = namestat(params)
+
+
+5.  Ta, Tb lifetimes in Exp(1/10)
+    P((Ta>10) union (Tb>10)) = 1 - P((Ta>=10) intersect (Tb>=10))
+                             = 1 - P(Ta>=10) * P(Tb>=10)
+                             = 1 - (expcdf(10,10))^2
+
+
+6.  T: total comp time in Gam(3,5), sum of 3 ind Exp(1/5)
+    P(T<12) = gamcdf(12,3,5)
+    by Gam-Poiss Formula: P(T<=t) = P(X>=lambda) X in Poiss(1/lambda, t)
+    P(T<12) = P(X>=3) = 1 - poisscdf(2, 12*1/5)
+
+
+7.  Gamm(3,5)
+a)  P(T<=9)
+b)  P(T>16|T>12)
+
+
+8.  P1: a doc is sent to M1 ~ 0.4
+    P2: a doc is sent to M2 ~ 0.6
+    {P1, P2} partition
+    T|P1 in Exp(1/2)
+    T|P2 in Unif(0,5)
+    P(T<1|P1) = expcdf(1,2)
+    P(T<1|P2) = unifcdf(1,0,5)
+    P(T<1) = P(T<1|P1)*P(P1) + P(T<1|P2)*P(P2)
+
+
+
+
+pkg load statistics
+
+
+
+
+
+
+

@@ -1,0 +1,192 @@
+######################################## LECTURE 1
+
+INTRODUCTION
+
+ML -> system models
+human learning
+    - supervised (predictive models)
+    - unsupervised (descriptive models)
+
+deductive vs adaptive systems
+
+learn f: X -> Y target function
+learn hypothesys h ~ f
+
+
+STATISTICS REVIEW
+
+probability distributions:
+    - discreete: p(x) {1,2,3,4,5,6}, sum p(x) = 1
+    - continuous: f(x), integral f = 1
+
+moments:
+    - expected value / mean
+        E(x) = sum x*p(x)
+        E(x) = integral x*f(x)
+    - variance
+        D^2/ sigm^2 = E( (x-E(x))^2 )
+    - standar deviation
+        sigm(x) = suare_root variance
+
+Normal/Gaussian Distribution
+Central Limit Theorem
+correletaion
+
+
+
+######################################## LECTURE 2
+
+conditional probability
+P(a|b) = P(a union b) / P(b)
+
+a ind of b
+hi squared test
+P(a|b) = P(a) -> P(a union b) = P(a)*P(b)
+
+independence -> uncorrelation
+uncorrelation -/-> independence
+
+ML relevant ind features
+
+CI confidence interval
+interval estimate of a population parameter
+
+mean u CI 95% u in [u-alpha, u+alpha]
+alpha = +/- 1.96 * sigm / rad n
+standard error of the mean = sigm / rad n
+
+
+BAYES THEOREM
+P(a|b) = P(b|a)*P(a) / P(b)
+Bayesian learning framework
+~ Hidden Markov Models
+
+
+MACHINE LEARNING
+
+SUPERVISED learning
+    predictive models ~ overfitting / noise
+    inductive learning ~ inductive bias (preferance to a hypthesis)
+    analogical learning
+    case base reasoning
+
+UNSUPERVISED learning
+    descriptive model
+    no labeled examples
+
+SEMISUPERVISED learning
+    labeled and unlabeled examples
+    kernel based methods
+
+REINFORCEMENT learning
+    learning an optimal sequence of actions to reach a particulat goal
+    interacting with the environment
+    gameplay / robotic agents
+
+inductive logic programming
+
+feature engineering vs deep learning
+
+what is a learning problem
+specification:
+task
+performance
+experience
+
+ex: learning to play a game
+T: play the game
+P: percentage game won
+E: pairs (boardstates, moves)
+
+Design Choices
+type if trainning experience:
+direct (teacher) / indirect
+is the trainning experience representative?
+what target function to learn?
+
+target function representation
+large table
+function of some board features
+neural network
+
+
+######################################## LECTURE 3
+
+offline learning: all data available
+online learning: data obtained sequentially
+
+Ocam's Razor:
+find the simplest hypothesis consistent with data
+complex hypothesis do not generalize well
+
+overfitting: complex model
+underfitting: too simple model
+
+inductive learners:
+    - eager learning (tries to extract a global aproximation for the target function)
+    - lazy learning (local aproximation for the target function)
+
+data types:
+    - discrete (categorical types) - classification
+    - continuous ~ regression
+
+Normalization:
+    - min/max norm
+        [a,b] x<-a+(xi-min)/(max-min)(b-a)
+    - std dev based norm
+        0 mean, 1 std
+        xi <- (xi-xbar)/sigma
+        xbar = (sum xi)/n
+        sigma^2 = (sum (x-xbar)^2)/n
+
+Feature Selection: correlation chi^2 test
+Component Reduction:
+    - PCA (Principal Component Analysis)
+        ~ unsupervised learning
+    - CCA (Curviliniar Component Analysis)
+        ~ nonliniar extension of PCA
+        ~ self organizing map (SOM)
+    - Autoencoders
+
+MAE (mean of absolute errors) = sum err xtest / n
+RMSE (root mean square error) ~SEE = radical ( sum or err^2 xtest / n )
+Clasifier:
+    - accuracy = correct/n
+    - error = 1 - accuracy
+
+Confusion Matrix
+actual classes vs predicted classes
+
+F-measure / F-score
+specificity
+ROC curve (Receiver Operating Characteristic)
+
+
+
+######################################## LECTURE 5
+
+Decision Trees Learning
+ID3
+top down greedy search in the hypothesis space
+what is the best atribute (best separation for instances)
+
+as statistical measure: Information Gain
+S: set of instances
+A: atribute
+IG(S,A) = Impurity(s) = sum(sv/s)*impurity(sv)
+Impurity =  Entropy / GINI index / Misclassification function
+
+Entropy
+S, c-classes
+pi = proportion of instances from S labeled as i
+Entropy (S) = -sum pi * log2 pi
+
+GINI(S) = 1 - sum pi^2
+
+misclassification (S) = 1-max(pi)
+
+induction bias: preferance for small decision trees with the maximum info gain for the attributes near the root.
+
+
+
+

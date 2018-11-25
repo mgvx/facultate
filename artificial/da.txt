@@ -1,0 +1,29 @@
+
+P(n) = "A person with n hairs is bald"
+P(n) any n in N
+P(0) is true
+P(k) is true -> P(k+1) is true
+contradiction
+
+categorical -> metric (multidimensional scaling)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
